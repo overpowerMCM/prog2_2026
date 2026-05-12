@@ -33,7 +33,5 @@ namespace ProyectoUno.Presentacion.Controllers
             // Retornar una respuesta adecuada (ej: 201 Created con el ID de la nueva cuenta)
             //return CreatedAtAction(nameof(ObtenerCuenta), new { id = 0 }, null); // Reemplaza 0 con el ID real de la cuenta creada
         }
-        
-        // Aquí puedes agregar métodos para manejar las solicitudes relacionadas con las cuentas
     }
 }
