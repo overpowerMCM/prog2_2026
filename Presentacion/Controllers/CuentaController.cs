@@ -33,5 +33,17 @@ namespace ProyectoUno.Presentacion.Controllers
             // Retornar una respuesta adecuada (ej: 201 Created con el ID de la nueva cuenta)
             //return CreatedAtAction(nameof(ObtenerCuenta), new { id = 0 }, null); // Reemplaza 0 con el ID real de la cuenta creada
         }
+
+        [HttpDelete("{id:int}")]
+        public void Delete(int id, EliminarCuentaService servicio)
+        {
+            servicio.Ejecutar(id);
+        }
+
+        [HttpPatch("{id:int}/extraer")]
+        public void Patch(int id, PatchCuentaInput input, RetiraDineroCuentaService service)
+        {
+            service.Ejecutar(id, input);
+        }
     }
 }

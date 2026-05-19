@@ -12,7 +12,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepositorioCuenta, RepositorioCuentaEnMemoria>();
 builder.Services.AddScoped<CrearCuentaService>();
 builder.Services.AddScoped<ObtenerCuentaPorIdService>();
-
+builder.Services.AddScoped<EliminarCuentaService>();
+builder.Services.AddScoped<RetiraDineroCuentaService>();
 // Registrar servicios MVC / Controllers
 builder.Services.AddControllers();
 

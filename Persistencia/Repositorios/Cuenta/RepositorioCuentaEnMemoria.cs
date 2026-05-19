@@ -5,8 +5,8 @@ namespace ProyectoUno.Persistencia.Repositorios
 {
     public class RepositorioCuentaEnMemoria : IRepositorioCuenta
     {
-        private readonly List<Cuenta> _cuentas = new List<Cuenta>();
-
+        private static readonly List<Cuenta> _cuentas = new List<Cuenta>();
+        private static int idIncremental = 1;
         public void ActualizarCuenta(Cuenta cuenta)
         {
             for( int i = 0; i < _cuentas.Count; i++)
@@ -21,6 +21,7 @@ namespace ProyectoUno.Persistencia.Repositorios
 
         public void AgregarCuenta(Cuenta cuenta)
         {
+            cuenta.Id = idIncremental++;
             _cuentas.Add(cuenta);
         }
 

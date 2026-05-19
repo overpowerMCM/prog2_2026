@@ -3,7 +3,7 @@ namespace ProyectoUno.Dominio.Entidades
     public class Cuenta
     {
         // Propiedades de la clase Cuenta
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Nombre { get; private set; }
         public float Saldo { get; private set; }
 
