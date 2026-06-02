@@ -24,7 +24,8 @@ namespace ProyectoUno.Aplicacion.Servicios
             {
                 Id = cuenta.Id,
                 Nombre = cuenta.Nombre,
-                Saldo = cuenta.Saldo
+                Saldo = cuenta.Saldo,
+                TransactionLimit = cuenta.TransactionLimit
             };
         }
     }

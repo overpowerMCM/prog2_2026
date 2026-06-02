@@ -21,7 +21,14 @@ namespace ProyectoUno.Aplicacion.Servicios
             
             if( input.Saldo.HasValue)
             {
-                modelo.Retirar(input.Saldo.Value);
+                decimal monto = input.Saldo.Value;
+
+                if (modelo.TransactionLimit.HasValue && monto > modelo.TransactionLimit.Value)
+                {
+                    throw new InvalidOperationException("La cantidad excede el límite por transacción.");
+                }
+
+                modelo.Retirar(monto);
             }
 
             _repositorioCuenta.ActualizarCuenta(modelo);

@@ -2,6 +2,6 @@ namespace ProyectoUno.Aplicacion.Dto
 {
     public class PatchCuentaInput
     {
-        public float? Saldo { get; set; }
+        public decimal? Saldo { get; set; }
     }
 }

@@ -5,19 +5,20 @@ namespace ProyectoUno.Dominio.Entidades
         // Propiedades de la clase Cuenta
         public int Id { get; set; }
         public string Nombre { get; private set; }
-        public float Saldo { get; private set; }
+        public decimal Saldo { get; private set; }
+        public decimal? TransactionLimit { get; private set; }
 
         // Constructor de la clase Cuenta
         public Cuenta()
-        {            
-            
+        {
         }
 
-        public Cuenta( string nombre, float saldo)
-        {            
+        public Cuenta(string nombre, decimal saldo, decimal? transactionLimit = null)
+        {
             Id = 0;
             EstablecerNombre(nombre);
-            EstablecerSaldoInicial(saldo);  
+            EstablecerSaldoInicial(saldo);
+            TransactionLimit = transactionLimit;
         }
 
         public void EstablecerNombre(string nuevoNombre)
@@ -32,11 +33,11 @@ namespace ProyectoUno.Dominio.Entidades
             }
         }
 
-        public void EstablecerSaldoInicial(float saldoInicial)
+        public void EstablecerSaldoInicial(decimal saldoInicial)
         {
             if (saldoInicial >= 0)
             {
-                Saldo = saldoInicial;
+                Saldo = Math.Round(saldoInicial, 2);
             }
             else
             {
@@ -44,12 +45,17 @@ namespace ProyectoUno.Dominio.Entidades
             }
         }
         // Método para depositar dinero en la cuenta
-        public void Depositar(float cantidad)
+        public void Depositar(decimal cantidad)
         {            
             if (cantidad > 0)
-            {                
-                Saldo += cantidad;
-            }   
+            {
+                if (TransactionLimit.HasValue && cantidad > TransactionLimit.Value)
+                {
+                    throw new InvalidOperationException("La cantidad excede el límite por transacción.");
+                }
+
+                Saldo += Math.Round(cantidad, 2);
+            }
             else
             {
                 throw new ArgumentException("La cantidad a depositar debe ser mayor que cero.");
@@ -57,13 +63,18 @@ namespace ProyectoUno.Dominio.Entidades
         }
 
         // Método para retirar dinero de la cuenta
-        public void Retirar(float cantidad)
+        public void Retirar(decimal cantidad)
         {            
             if (cantidad > 0)
-            {                
+            {
+                if (TransactionLimit.HasValue && cantidad > TransactionLimit.Value)
+                {
+                    throw new InvalidOperationException("La cantidad excede el límite por transacción.");
+                }
+
                 if (Saldo >= cantidad)
-                {                    
-                    Saldo -= cantidad;  
+                {
+                    Saldo -= Math.Round(cantidad, 2);
                 }
                 else
                 {
@@ -74,6 +85,16 @@ namespace ProyectoUno.Dominio.Entidades
             {
                 throw new ArgumentException("La cantidad a retirar debe ser mayor que cero.");
             }
+        }
+
+        public void EstablecerTransactionLimit(decimal? limite)
+        {
+            if (limite.HasValue && limite.Value < 0)
+            {
+                throw new ArgumentException("El límite de transacción no puede ser negativo.");
+            }
+
+            TransactionLimit = limite;
         }
     }
 }
