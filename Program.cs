@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using ProyectoUno.Aplicacion.Servicios;
 using ProyectoUno.Dominio.Interfaces;
+using ProyectoUno.Persistencia;
 using ProyectoUno.Persistencia.Repositorios;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IRepositorioCuenta, RepositorioCuentaEnMemoria>();
+// Registrar DbContext con provider InMemory
+builder.Services.AddDbContext<Contexto>(options =>
+    options.UseInMemoryDatabase("CuentasDb"));
+
+builder.Services.AddScoped<IRepositorioCuenta, RepositorioCuentaEF>();
 builder.Services.AddScoped<CrearCuentaService>();
 builder.Services.AddScoped<ObtenerCuentaPorIdService>();
 builder.Services.AddScoped<EliminarCuentaService>();

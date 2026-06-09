@@ -96,5 +96,10 @@ namespace ProyectoUno.Dominio.Entidades
 
             TransactionLimit = limite;
         }
+
+        public bool PuedoBorraCuenta()
+        {
+            return Saldo == 0;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace ProyectoUno.Aplicacion.Servicios
                 throw new Exception("No existe la cuenta.");
             }
 
-            if(modelo.Saldo == 0)
+            if(modelo.PuedoBorraCuenta())
             {
                 _repositorioCuenta.EliminarCuenta(id);
             }
