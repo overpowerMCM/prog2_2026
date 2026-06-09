@@ -6,6 +6,9 @@ using ProyectoUno.Persistencia;
 
 namespace ProyectoUno.Persistencia.Repositorios
 {
+    // TODO: PAra que esta implementacion funcione, deberan 
+    // mapear correctamente la entidad Cuenta a CuentaEF, y viceversa.
+    // no olvidarse del dto input y output para el controlador.
     public class RepositorioCuentaEF : IRepositorioCuenta
     {
         private readonly Contexto _contexto;
@@ -17,6 +20,7 @@ namespace ProyectoUno.Persistencia.Repositorios
 
         public void ActualizarCuenta(Cuenta cuenta)
         {
+
             _contexto.Cuentas.Update(cuenta);
             _contexto.SaveChanges();
         }

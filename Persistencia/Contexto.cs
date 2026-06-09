@@ -7,7 +7,7 @@ namespace ProyectoUno.Persistencia
     {
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
         
-        public DbSet<Cuenta> Cuentas { get; set; }
+        public DbSet<Entidades.CuentaEF> Cuentas { get; set; }
 
 
 
