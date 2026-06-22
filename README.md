@@ -6,6 +6,7 @@ Usar el comando
 dotnet new webapi -o NombreDeTuProyecto --use-controllers
 ``` 
 
+HOLA
 
 ## 2 Estructura
 - Crear la estructura basica del Proyecto, usando las linealogias del patron Onion Architecture. Hacerlo simple sin implementar ORM, la persistencia se hara "InMemory"
